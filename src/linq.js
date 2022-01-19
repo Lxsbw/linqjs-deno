@@ -1,5 +1,5 @@
 /**
- * 语言集成查询库 LINQ to JavaScript
+ * LINQ to JavaScript (Language Integrated Query)
  */
 class Linq {
   /**
@@ -11,7 +11,7 @@ class Linq {
     }
     this._elements = elements;
 
-    //#region 方法别名
+    //#region Method alias
 
     this.add = this.Add;
     this.append = this.Append;
@@ -696,6 +696,9 @@ class OrderedList extends Linq {
   }
 }
 
+/**
+ * Tool method
+ */
 const tools = {
   /**
    * Checks if the argument passed is an object
@@ -741,6 +744,9 @@ const tools = {
     };
   },
 
+  /**
+   * Key comparer
+   */
   keyComparer(_keySelector, descending) {
     return function (a, b) {
       var sortKeyA = _keySelector(a);
@@ -755,7 +761,9 @@ const tools = {
     };
   },
 
-  // clone data
+  /**
+   * Clone data
+   */
   cloneDeep(obj) {
     let result;
     // Handle the 3 simple types, and null or undefined
