@@ -6,7 +6,7 @@ dataA = [0, 1, 3, 3, 2];
 dataB = [1.5, 1.5, 1.5, 1.5];
 dataC = ['征史郎', '征四郎', '征史郎', '正史郎'];
 
-parameters = [
+const parameters = [
   { bill: 1, box: 'one', sn: 'fruits0', status: 30 },
   { bill: 1, box: 'one', sn: 'fruits1', status: 40 },
   { bill: 1, box: 'one', sn: 'fruits2', status: 0 },

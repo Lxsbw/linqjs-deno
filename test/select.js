@@ -1,4 +1,4 @@
-var parameters, results;
+var parameters, results, results2;
 
 import { Linq } from '../index.js';
 

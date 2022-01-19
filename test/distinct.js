@@ -1,4 +1,4 @@
-var dataA, dataA_D, dataB, dataB_D, dataC, dataC_D;
+var dataA, dataA_D, dataB, dataB_D, dataC, dataC_D, dataC_E;
 
 import { Linq } from '../index.js';
 
@@ -6,7 +6,7 @@ dataA = [0, 1, 3, 3, 2];
 dataB = [1.5, 1.5, 1.5, 1.5];
 dataC = ['征史郎', '征四郎', '征史郎', '正史郎'];
 
-parameters = [
+const parameters = [
   { ID: 5, Rate: 0.0, Name: '正一郎' },
   { ID: 13, Rate: 0.1, Name: '清次郎' },
   { ID: 25, Rate: 0.0, Name: '正一郎' },
