@@ -1,0 +1,10 @@
+.DS_Store
+.git
+.history
+.idea
+logs
+dist
+node_modules
+heapdump-*
+package-lock.json
+yarn.lock
