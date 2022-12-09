@@ -29,6 +29,7 @@ class Linq {
     this.defaultIfEmpty = this.DefaultIfEmpty;
     this.distinct = this.Distinct;
     this.distinctBy = this.DistinctBy;
+    this.distinctMap = this.DistinctMap;
     this.elementAt = this.ElementAt;
     this.elementAtOrDefault = this.ElementAtOrDefault;
     this.except = this.Except;
@@ -213,6 +214,13 @@ class Linq {
   }
 
   /**
+   * Returns distinct elements from a sequence by using the default equality comparer to compare values and this.Select method.
+   */
+  DistinctMap(predicate) {
+    return predicate ? this.Select(predicate).Distinct() : this.Distinct();
+  }
+
+  /**
    * Returns the element at a specified index in a sequence.
    */
   ElementAt(index) {
@@ -287,7 +295,7 @@ class Linq {
         let existingMap = {
           key: key,
           count: 1,
-          elements: [mappedValue]
+          elements: [mappedValue],
         };
         ac.push(existingMap);
       }
@@ -617,7 +625,7 @@ class Linq {
       dicc[_this.Select(key).ElementAt(i).toString()] = value ? _this.Select(value).ElementAt(i) : v;
       dicc.Add({
         Key: _this.Select(key).ElementAt(i),
-        Value: value ? _this.Select(value).ElementAt(i) : v
+        Value: value ? _this.Select(value).ElementAt(i) : v,
       });
       return dicc;
     }, new Linq());
@@ -837,7 +845,7 @@ const tools = {
       return result;
     }
     throw new Error("Unable to copy param! Its type isn't supported.");
-  }
+  },
 };
 
 export default Linq;
