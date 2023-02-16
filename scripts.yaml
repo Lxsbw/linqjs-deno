@@ -1,4 +1,0 @@
-# scripts.yaml
-scripts:
-  test: deno run ./test/xxx.js
-  test-thenby: deno run ./test/thenByDescending.js
