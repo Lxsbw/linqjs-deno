@@ -20,10 +20,10 @@ const parameters2 = [
   { bill: 1, box: 'ten', sn: 'fruits1', status: 40 }
 ];
 
-intCount = new Linq(intArray).Count();
-stringCount = new Linq(stringList).Count();
-intCount2 = new Linq(intArray).Count(x => x % 2 === 0);
-stringCount2 = new Linq(stringList).Count(x => x.indexOf('三') >= 0);
+intCount = new Linq(intArray).count();
+stringCount = new Linq(stringList).count();
+intCount2 = new Linq(intArray).count(x => x % 2 === 0);
+stringCount2 = new Linq(stringList).count(x => x.indexOf('三') >= 0);
 
 const Qty = new Linq(parameters).count(x => x.sn && x.sn.length > 0);
 const noQty = new Linq(parameters).where(x => !x.sn);
