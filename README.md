@@ -1,6 +1,6 @@
 # Linq for JavaScript
 
-![linqjs](https://deno.land/x/jslinq@1.0.8/linqjs.png)
+![linqjs](https://deno.land/x/jslinq@1.1.0/linqjs.png)
 
 ## From
 
