@@ -121,7 +121,7 @@ class Linq {
   distinct() {
     return this.where(function (value, index, iter) {
       return (
-        (tools.isObj(value)
+        (tools.isObject(value)
           ? iter.findIndex(function (obj) {
               return tools.equal(obj, value);
             })
@@ -230,7 +230,7 @@ class Linq {
         let existingMap = {
           key: key,
           count: 1,
-          elements: [mappedValue],
+          elements: [mappedValue]
         };
         ac.push(existingMap);
       }
@@ -560,7 +560,7 @@ class Linq {
       dicc[_this.select(key).elementAt(i).toString()] = value ? _this.select(value).elementAt(i) : v;
       dicc.add({
         Key: _this.select(key).elementAt(i),
-        Value: value ? _this.select(value).elementAt(i) : v,
+        Value: value ? _this.select(value).elementAt(i) : v
       });
       return dicc;
     }, new Linq());
@@ -607,6 +607,13 @@ class Linq {
           return result(x, list.elementAt(y));
         });
   }
+
+  /**
+   * Determine if two objects are equal.
+   */
+  // equals(param1, param2) {
+  //   return tools.equal(param1, param2);
+  // }
 }
 
 /**
@@ -646,7 +653,7 @@ const tools = {
   /**
    * Checks if the argument passed is an object
    */
-  isObj(x) {
+  isObject(x) {
     return !!x && typeof x === 'object';
   },
 
@@ -655,14 +662,27 @@ const tools = {
    */
   equal(a, b) {
     if (a === b) return true;
-    if (typeof a != typeof b) return false;
-    if (!(a instanceof Object)) return a === b;
+    if (typeof a !== typeof b) return false;
+    if (!this.isObject(a) || !this.isObject(b)) return a === b;
 
-    return Object.entries(a).every(_a => {
-      var key = _a[0],
-        val = _a[1];
-      return this.isObj(val) ? this.equal(b[key], val) : b[key] === val;
-    });
+    const types = [a, b].map(x => x.constructor);
+    if (types[0] !== types[1]) return false;
+    
+    if (a instanceof Date && b instanceof Date) {
+      return a.getTime() === b.getTime();
+    }
+    if (a instanceof RegExp && b instanceof RegExp) {
+      return a.toString() === b.toString();
+    }
+    
+    var entriesA = Object.entries(a);
+    var entriesB = Object.entries(b);
+    if (entriesA.length !== entriesB.length) return false;
+
+    var Fn = (entries, _b) =>
+      entries.every(([key, val]) => (this.isObject(val) ? this.equal(_b[key], val) : _b[key] === val));
+
+    return Fn(entriesA, b) && Fn(entriesB, a);
   },
 
   /**
@@ -772,11 +792,16 @@ const tools = {
    * Clone data
    */
   cloneDeep(obj) {
+    if (typeof structuredClone === 'function') {
+      return structuredClone(obj);
+    }
+
     let result;
     // Handle the 3 simple types, and null or undefined
     if (null === obj || 'object' !== typeof obj) {
       return obj;
     }
+
     // Handle Date
     if (obj instanceof Date) {
       result = new Date();
@@ -796,6 +821,7 @@ const tools = {
       }
       return result;
     }
+
     // Handle Object
     if (obj instanceof Object) {
       result = {};
@@ -807,7 +833,7 @@ const tools = {
       return result;
     }
     throw new Error("Unable to copy param! Its type isn't supported.");
-  },
+  }
 };
 
 export default Linq;
