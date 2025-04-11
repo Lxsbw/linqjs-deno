@@ -113,12 +113,12 @@ declare class Linq<T> {
   /**
    * Groups the elements of a sequence according to a specified key selector function.
    */
-  groupBy<TOut, TResult = T>(
-    grouper: (key: T) => TOut,
-    mapper?: (element: T) => TResult
-  ): {
-    [key: string]: TResult[];
-  };
+  groupBy<TOut, TResult = T>(grouper: (key: T) => TOut, mapper?: (element: T) => TResult): TResult[];
+  /**
+   * Groups the elements of a sequence according to a specified key selector function.
+   * a little data.
+   */
+  groupByMini<TOut, TResult = T>(grouper: (key: T) => TOut, mapper?: (element: T) => TResult): TResult[];
   /**
    * Correlates the elements of two sequences based on equality of keys and groups the results.
    * The default equality comparer is used to compare keys.
