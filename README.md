@@ -6,8 +6,6 @@
 
 https://github.com/kutyel/linq.ts
 
-Thank you
-
 ## Usage
 
 ### import
