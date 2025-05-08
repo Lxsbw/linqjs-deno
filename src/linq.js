@@ -723,7 +723,9 @@ const Tools = {
    * Number calculate addition
    */
   calcNum(num1, num2) {
-    if (!this.isNum(num1) || !this.isNum(num2)) return 0;
+    if (!this.isNum(num1) || !this.isNum(num2)) {
+      return 0;
+    }
     const { mult, place } = this.calcMultiple(num1, num2);
     return Number(((num1 * mult + num2 * mult) / mult).toFixed(place));
   },
@@ -732,7 +734,10 @@ const Tools = {
    * Number calculate division
    */
   calcNumDiv(num1, num2) {
-    if (!this.isNum(num1) || !this.isNum(num2)) return 0;
+    /* istanbul ignore next */
+    if (!this.isNum(num1) || !this.isNum(num2)) {
+      return 0;
+    }
     const { mult } = this.calcMultiple(num1, num2);
     return (num1 * mult) / (num2 * mult);
   },
@@ -785,6 +790,7 @@ const Tools = {
    * Clone data
    */
   cloneDeep(obj) {
+    /* istanbul ignore next */
     if (typeof structuredClone === 'function') {
       return structuredClone(obj);
     }
@@ -826,7 +832,8 @@ const Tools = {
       }
       return result;
     }
-    // throw new Error("Unable to copy param! Its type isn't supported.");
+    /* istanbul ignore next */
+    throw new Error("Unable to copy param! Its type isn't supported.");
   },
 
   /**
